@@ -38,7 +38,7 @@ const Nav = () => {
 
     setIsScrolled(prev =>location.pathname !=='/'?true :prev);
     const handleScroll = () => {
-      setIsScrolled(window.scrollTop > 10);
+      setIsScrolled(window.scrollY > 10);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
