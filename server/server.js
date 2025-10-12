@@ -5,6 +5,7 @@ import cors from 'cors'
 dotenv.config({});
 import { clerkMiddleware } from '@clerk/express'
 import clerkWebhooks from "./controllers/clerkWebhooks.js";
+import userRouter from "./routes/userRoutes.js";
 
 const app = express();
 app.use(clerkMiddleware())
@@ -17,6 +18,9 @@ const port = process.env.PORT || 7000;
 app.get("/", (req, res) => {
   res.send("Api is working");
 });
+
+app.use('/api/user',userRouter)
+app.use('/api/hotels',hotelRouter)
 
 const startServer = async () => {
   try {
