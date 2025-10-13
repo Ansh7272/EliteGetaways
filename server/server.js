@@ -6,7 +6,12 @@ dotenv.config({});
 import { clerkMiddleware } from '@clerk/express'
 import clerkWebhooks from "./controllers/clerkWebhooks.js";
 import userRouter from "./routes/userRoutes.js";
+import connectCloudinary from "./config/cloudinary.js";
+import roomRouter from "./routes/roomRoutes.js";
+import hotelRouter from "./routes/hotelRoutes.js";
 
+
+connectCloudinary()
 const app = express();
 app.use(clerkMiddleware())
 app.use(express.json())
@@ -21,6 +26,8 @@ app.get("/", (req, res) => {
 
 app.use('/api/user',userRouter)
 app.use('/api/hotels',hotelRouter)
+app.use('/api/rooms',roomRouter)
+
 
 const startServer = async () => {
   try {
